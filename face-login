@@ -1,0 +1,13 @@
+#!/bin/bash
+# /usr/local/bin/face-login
+# Wrapper that sets up environment for GDM face authentication.
+# Called by PAM before any user session exists.
+# Sets WAYLAND_DISPLAY so PyQt5 can render on the login screen.
+
+export WAYLAND_DISPLAY=wayland-0
+export XDG_RUNTIME_DIR=/run/user/1000
+export QT_QPA_PLATFORM=wayland
+export PYTHONPATH=/home/mach1/Python-Project
+
+exec /home/mach1/Python-Project/Penv/bin/python3 \
+     /home/mach1/Python-Project/gdm_auth.py "$@"
